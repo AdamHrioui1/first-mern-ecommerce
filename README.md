@@ -1,1 +1,1 @@
-# first-mern-ecomm
+# first-mern-ecom
