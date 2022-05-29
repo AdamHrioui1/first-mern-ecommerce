@@ -1,0 +1,186 @@
+/*------------ form ---------------*/
+.login__page {
+    width: 100%;
+    /* height: calc(100vh - 60px); */
+}
+
+.login__container {
+    width: 100%;
+    /* height: calc(100vh - 120px); */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+.account__form {
+    max-width: 450px;
+    width: 100%;
+    margin: 10px;
+    padding: 60px 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    border-radius: 6px;
+    border: 1px solid var(--headers-color);
+}
+
+.account__form h3 {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 10px;
+    color: var(--headers-color);
+}
+
+.account__form h1 {
+    margin-bottom: 30px;
+    font-weight: 700;
+    font-size: 36px;
+    color: var(--headers-color);
+}
+
+.form {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    /* border: 1px solid #000; */
+}
+
+.input__container {
+    margin-bottom: 20px;
+    position: relative;
+    width: 100%;
+
+    border-radius: 8px;
+    border: 1px solid var(--headers-color);
+    background-color: #fff;
+}
+
+.input__container .input {
+    padding: 8px;
+    width: 100%;
+    border: none;
+    
+    outline: none;
+    background-color: transparent;
+    color: var(--headers-color);
+}
+
+.input__container .label {
+    height: 22px;
+    width: auto;
+    padding: 0 5px;
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+
+    color: var(--headers-color);
+    background-color: #fff;
+    font-size: 14px;
+    transition: .2s;
+
+    cursor: text;
+    z-index: 0;
+}
+
+.input__container.textarea .label {
+    top: 20px;
+    transform: translateY(-50%);
+}
+
+.input:focus + label {
+    top: 0;
+    color: var(--headers-color);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.input.textarea:focus + label {
+    top: 0;
+    color: var(--headers-color);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.input:not(:placeholder-shown).input:not(:focus) + label {
+    top: 0;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.input__container > input:focus{
+    border-radius: 6px;
+    border: 1px solid var(--headers-color);
+}
+
+.form__button {
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 10px;
+    background-color: var(--headers-color);
+
+    border: none;
+    outline: none;
+    color: #fff;
+    font-weight: 600;
+
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.form__button.black {
+    background-color: var(--black);
+}
+
+.account__form h5 {
+    font-weight: 400;
+    color: var(--headers-color);
+}
+
+.account__form h5 a {
+    color: #3946ff;
+    text-decoration: underline;
+}
+
+/* Change Autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  /* border: 1px solid green; */
+  -webkit-text-fill-color: var(--headers-color);
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+  border-radius: 6px;
+}
+
+@media only screen and (max-width: 500px) {
+    .account__form {
+        margin: 0;
+        border: none;
+    }
+    .account__form h1 {
+        margin-top: 0;
+    }
+}
+
+@media only screen and (max-width: 300px) {
+    .account__form {
+        padding: 20px;
+    }
+}

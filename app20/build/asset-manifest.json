@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d5c97668.css",
+    "main.js": "/static/js/main.ba3dc231.js",
+    "static/media/landin_img.png": "/static/media/landin_img.473f610eb9306b2c668d.png",
+    "static/media/AddPhoto.svg": "/static/media/AddPhoto.a2ab6d8ec6cb922cc5e687596de7014a.svg",
+    "static/media/Instagram.svg": "/static/media/Instagram.3c3e45467af9d33094743b4bb29958f7.svg",
+    "static/media/Delete.svg": "/static/media/Delete.ba3e908937e47bb87d551ddfbd1dfafe.svg",
+    "static/media/Cart.svg": "/static/media/Cart.f3542195c34f5b8cbeec6abf8178401d.svg",
+    "static/media/Cart2.svg": "/static/media/Cart2.7951c95b422d20d1a3ef145bb1922a68.svg",
+    "index.html": "/index.html",
+    "static/media/Facebook.svg": "/static/media/Facebook.3343a5ccd601036f9c6e4e88a77f7bcf.svg",
+    "static/media/Cross.svg": "/static/media/Cross.3daecdc3d9bd7bfc63ac15f9c6e28622.svg",
+    "static/media/Edit.svg": "/static/media/Edit.16c71ec5210f47b06ddf2c243f59e420.svg",
+    "static/media/Arrow.svg": "/static/media/Arrow.696792242d2e7d2ff6e68abfec86d50b.svg"
+  },
+  "entrypoints": [
+    "static/css/main.d5c97668.css",
+    "static/js/main.ba3dc231.js"
+  ]
+}

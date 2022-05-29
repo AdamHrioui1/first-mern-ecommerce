@@ -1,0 +1,14 @@
+<svg id="Component_9_1" data-name="Component 9 – 1" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <g id="Rectangle_47" data-name="Rectangle 47" fill="#fff" stroke="#707070" stroke-width="15">
+    <rect width="511" height="511" rx="10" stroke="none"/>
+    <rect x="7.5" y="7.5" width="496" height="496" rx="2.5" fill="none"/>
+  </g>
+  <rect id="Rectangle_48" data-name="Rectangle 48" width="221" height="226" transform="translate(291 286)" fill="#fff"/>
+  <path id="Path_16" data-name="Path 16" d="M277.784,8216.88l123.458-115.725,93.541,71.387L679.4,7995.306l98.464,105.849" transform="translate(-272 -7877)" fill="none" stroke="#707070" stroke-width="15"/>
+  <g id="Ellipse_2" data-name="Ellipse 2" transform="translate(114 83)" fill="#fff" stroke="#707070" stroke-width="15">
+    <circle cx="50.5" cy="50.5" r="50.5" stroke="none"/>
+    <circle cx="50.5" cy="50.5" r="43" fill="none"/>
+  </g>
+  <line id="Line_11" data-name="Line 11" y2="204" transform="translate(403.5 307.5)" fill="none" stroke="#707070" stroke-width="15"/>
+  <path id="Path_17" data-name="Path 17" d="M0,0H216" transform="translate(295.5 409.5)" fill="none" stroke="#707070" stroke-width="15"/>
+</svg>

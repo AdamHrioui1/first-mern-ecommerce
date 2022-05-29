@@ -1,0 +1,12 @@
+@media only screen and (max-width: 600px) {
+    .product__table.orders .table__product__item ul li, .table__product__item ul li h3 {
+        font-size: 10px;
+        font-weight: 500;
+    }
+
+    .product__table.orders .table__header ul li {
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+}

@@ -1,0 +1,93 @@
+.DownloadIcon__container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.DownloadIcon__container h4 {
+    padding: 10px;
+    margin-top: 30px;
+
+    text-align: center;
+}
+
+.downloader__container {
+    width: 100px;
+    height: 100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.shapes__container {
+    position: relative;
+    width: 100%;
+    height: 80px;
+
+    background-color: #fff;
+    transform: rotate(180deg);
+}
+
+.fisrt__shape {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+
+    width: 25px;
+    height: 50px;
+    transform: translateX(-50%);
+    transform-origin: bottom;
+
+    border-radius: 5px 5px 0 0;
+    background-color: var(--headers-color);
+    z-index: 1000;
+
+    animation: heightAnimation 1s ease-in-out infinite;
+}
+
+.second__shape {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    background-color: #fff;
+
+    z-index: 999;
+}
+
+.third__shape {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg) ;
+
+    width: 40px;
+    height: 40px;
+
+    background-color: var(--headers-color);
+    z-index: 998;
+    border-radius: 5px;
+}
+
+.download__bottom {
+    width: 100%;
+    height: 20px;
+
+    background-color: var(--headers-color);
+    border-radius: 5px;
+}
+
+@keyframes heightAnimation {
+    0% {
+        top: 0;
+        height: 40px;
+    }
+
+    100% {
+        top: 35px;
+        height: 20px;
+    }
+}

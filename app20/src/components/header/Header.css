@@ -1,0 +1,280 @@
+/*---------------- Burger Menu ------------*/
+#menu_checkbox {
+    display: none;
+}
+  
+label {
+    width: 35px;
+    height: 35px;
+    transform: translateY(-50%);
+    transition: 0.3s ease transform;
+    cursor: pointer;
+}
+  
+label div {
+    width: 3px;
+    height: 3px;
+    background-color: var(--black);
+    margin-left: 0;
+    margin-bottom: 6px;
+    transition: 0.3s ease width, 0.3s ease margin-left, 0.3s ease margin-bottom,
+    0.3s ease background-color;
+}
+
+.red_label div {
+    background-color: var(--red);
+}
+  
+label div:first-child {
+    margin-left: auto;
+    width: 35px;
+}
+  
+label div:nth-child(2) {
+    margin-left: auto;
+    width: 11px;
+}
+  
+label div:last-child {
+    margin-left: auto;
+    width: 20px;
+    margin-bottom: 0;
+}
+
+.menu_checkbox.on + label {
+    transform: translateY(-50%) rotateZ(-0deg);
+}
+  
+.menu_checkbox.on + label div {
+    width: 3px;
+}
+
+
+/*----------------------- Navbar ---------------------*/
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    padding: 0 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10000;
+
+    background-color: transparent;
+}
+
+.navbar.sticky {
+    position: sticky;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    background-color: #fff;
+}
+
+.logo {
+    color: var(--black);
+}
+.logo.red {
+    color: var(--red);
+}
+
+.right_navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right_navbar .cart {
+    position: relative;
+    margin-right: 20px;
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right_navbar .cart span {
+    position: absolute;
+    top: -15%;
+    right: -30%;
+
+    width: 20px;
+    height: 20px;
+    background-color: var(--primary-color);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+
+    border-radius: 50%;
+}
+
+.right_navbar img {
+    width: 20px;
+}
+
+.burger {
+    width: 40px;
+    height: 23px;
+    z-index: 100000;
+}
+
+/*------------- Menu list ------------*/
+
+.menu_list {
+    margin: 0;
+    position: fixed;
+    top: 0px;
+    right: -500px;
+
+    padding: 40px 0;
+    width: 500px;
+    height: calc(100vh);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+
+    backdrop-filter: blur(10px);
+    box-shadow: 0 30px 100px rgb(0 0 0 / 1%), 0 40px 40px rgb(0 0 0 / 10%);
+
+    z-index: 10000;
+    transition: .4s ease-in-out;
+}
+
+.menu_list.on {
+    right: 0;
+}
+
+.menu_list li {
+    width: 100%;
+    padding: 10px 60px;
+        
+    text-align: center;
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--black);
+    
+    z-index: 10000;
+    cursor: pointer;
+}
+
+.menu_list li a {
+    padding: 10px 60px;
+    width: 100%;
+
+    text-align: center;
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--black);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .menu_list {
+        width: 100vw;
+        right: -100vw;
+    }
+    .admin__dashboard {
+        display: none;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+    .navbar {    
+        background-color: var(--primary-color);
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .navbar {
+        padding: 0 20px;
+    }
+}
+
+@media only screen and (max-width: 300px) {
+    .navbar {
+        padding: 0 20px;
+    }
+}
+
+/*---------------- Animation ---------------*/
+.logo {
+    animation: logoAnimation 1s ease;
+}
+
+.burger label div:nth-child(1) {
+    animation: burgerBarsAnimation1 1s ease;
+}
+.burger label div:nth-child(2) {
+    animation: burgerBarsAnimation2 1.2s ease;
+}
+.burger label div:nth-child(3) {
+    animation: burgerBarsAnimation3 1.4s ease;
+}
+
+.cart {
+    animation: cartAnimation 1.5s ease;
+}
+
+@keyframes logoAnimation {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+@keyframes burgerBarsAnimation1 {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 35px;
+    }
+}
+
+@keyframes burgerBarsAnimation2 {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 11px;
+    }
+}
+
+@keyframes burgerBarsAnimation3 {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 20px;
+    }
+}
+
+@keyframes cartAnimation {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

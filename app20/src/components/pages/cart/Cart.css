@@ -1,0 +1,139 @@
+.page__second__header {
+    width: 100%;
+    padding: 20px 40px;
+    position: sticky;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    
+    background-color: #fff;
+    color: var(--headers-color);
+    font-weight: 400;
+    text-align: left;
+    z-index: 1000;
+}
+.page__second__header h2 {
+    width: 100%;
+    
+    font-size: 19px;
+    color: var(--headers-color);
+    font-weight: 400;
+    text-align-last: left;
+}
+
+.product__table {
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.table__header {
+    width: 104%;
+    padding: 20px 30px;
+    position: sticky;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    
+    background-color: #fff;
+    color: var(--headers-color);
+    font-weight: 400;
+    text-align: center;
+    z-index: 1000;
+}
+
+.table__header ul {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.table__header ul li {
+    width: 100%;
+
+    color: var(--headers-color);
+    text-align: center;
+    font-weight: 700;
+}
+
+@import url('./TableItem.css');
+
+/*----------- Total & Payment ----------*/
+.total__payment__container {
+    width: 100%;
+    margin: 20px 20px 60px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.total__payment__info {
+    margin-left: auto;
+    padding: 20px;
+    max-width: 300px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.total__payment__info h2 {
+    font-weight: 700;
+    color: var(--headers-color);
+}
+
+.paypal__btn {
+    padding: 10px 40px;
+    background-color: var(--black);
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/*------------ Responsive ----------*/
+@media only screen and (max-width: 600px) {
+    .table__header__name, .table__country__name {
+        display: none !important;
+    }
+    .total__payment__container {
+        align-items: center;
+    }
+}
+
+@media only screen and (max-width: 300px) {
+    .page__header {
+        padding: 5px 20px
+    }
+    .page__header h1 {
+        font-size: 17px;
+    }
+    .page__second__header {
+        padding: 20px 20px;
+    }
+    .page__second__header h2 {
+        font-size: 14px;
+    }    
+    .table__header {
+        padding: 20px 0px;
+    }
+    
+    .table__header ul li {
+        font-size: 14px;
+    }
+}
