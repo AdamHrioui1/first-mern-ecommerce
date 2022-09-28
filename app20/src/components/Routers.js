@@ -14,6 +14,11 @@ import Orders from './pages/orders/Orders';
 import OrderDetails from './pages/orderDetails/OrderDetails';
 import GlobaleCotext from '../GlobaleCotext';
 import Edit from './pages/Edit/Edit';
+import Faq from './pages/faq/Faq';
+import PrivacyPolicy from './pages/privacyPolicy/PrivacyPolicy';
+import TermsConditions from './pages/termsCondition/TermsConditions';
+import Cookies from './pages/cookies/Cookies';
+import Refund from './pages/refund/Refund';
 
 function Routers() {
   const state = useContext(GlobaleCotext)
@@ -31,7 +36,6 @@ function Routers() {
           <Route  path='/cart' exact element={<Cart />} />
           
           <Route  path='/about' exact element={<About />} />
-          <Route  path='/contact' exact element={<Contact />} />
           <Route  path='/register' exact element={<Register /> } />
           <Route  path='/login' exact element={<Login /> } />
 
@@ -40,6 +44,13 @@ function Routers() {
           
           <Route  path='/add_product' exact element={isAdmin ? <AddProduct /> : <Products /> } />
           <Route  path='/edit/:id' exact element={isAdmin ? <Edit /> : <Products /> } />
+
+          <Route  path='/contact' exact element={<Contact />} />
+          <Route  path='/faq' exact element={<Faq />} />
+          <Route  path='/privacy_policy' exact element={<PrivacyPolicy />} />
+          <Route  path='/terms_and_conditions' exact element={<TermsConditions />} />
+          <Route  path='/cookies' exact element={<Cookies />} />
+          <Route  path='/refund' exact element={<Refund />} />
         </Routes>
       </div>
     </Router>

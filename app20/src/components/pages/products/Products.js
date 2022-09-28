@@ -5,23 +5,12 @@ import GlobaleCotext from '../../../GlobaleCotext'
 import LoadingProducts from '../LoadingProducts/LoadingProducts'
 
 import { AnimateSharedLayout, motion } from 'framer-motion'
+import Footer from '../../footer/Footer'
+import Filter from '../../filter/Filter'
+import Pagination from '../../pagination/Pagination'
+import GetAllProducts from './GetAllProducts'
 
 function Products() {
-  const state = useContext(GlobaleCotext)
-  const [products] = state.products.products
-  const [allProducts, setAllProducts] = useState([])
-
-  useEffect(() => {
-    if(products) {
-      getProducts()
-    }
-  }, [products, allProducts])
-
-  const getProducts = async () => {
-    setAllProducts(products)
-  }
-
-  if(products.length === 0) return <LoadingProducts />
 
   return (
     <div className='product_page'>
@@ -30,16 +19,13 @@ function Products() {
         <motion.div layoutId='border' className="border"></motion.div>
       </div>
 
-      <div className='products__handler'>
-        {/* <AnimateSharedLayout> */}
-          {
-            allProducts.map(product => {
-              return <ProductItem key={product._id} product={product} />
-            })
-          }
-        {/* </AnimateSharedLayout> */}
-            
-      </div>
+      <Filter />
+      
+      <GetAllProducts />
+
+      <Pagination />
+
+      <Footer />
     </div>
   )
 }

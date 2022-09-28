@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Facebook from '../../icons/Facebook.svg'
 import Instagram from '../../icons/Instagram.svg'
 import Arrow from '../../icons/Arrow.svg'
-import landin_img from '../../images/landin_img.png'
+import landing_img from '../../images/landing_page_img.webp'
 import GlobalCotext from '../../../GlobaleCotext'
 
 function Home() {
@@ -25,15 +25,15 @@ function Home() {
         <p>No shoe will be worth wearing, despite its quality and value unless you feel comfortable in it.<br/>
         Think about your feet, care about your style and the manner of walking.</p>
         
-        <img src={landin_img} className='landing_page_img' alt='shoes png' />
-        <div onClick={explore} className='landing_page_btn one'>
+        <img src={landing_img} className='landing_page_img' alt='shoes png' />
+        <Link to='/products' className='landing_page_btn one'>
             <span>Explore</span>
             <img src={Arrow} alt='arrow' />
-        </div>
+        </Link>
       </div>
 
       <div className='column2'>
-        <img src={landin_img} className='landing_page_img' alt='shoes png' />
+        <img src={landing_img} className='landing_page_img' alt='shoes png' />
       </div>
 
       {/*-------------- Landing Page for Mobile -------------*/}
@@ -45,16 +45,16 @@ function Home() {
         </div>
 
         <div className='mobile_row'>
-          <img src={landin_img} className='mobile_img' alt='shoes png' />
+          <img src={landing_img} className='mobile_img' alt='shoes png' />
         </div>
 
         <div className='mobile_row' >
           {/* <p>No shoe will be worth wearing, despite its quality and value unless you feel comfortable in it.</p> */}
           <p>Think about your feet, care about your style and the manner of walking.</p>
-          <div onClick={explore} className='landing_page_btn'>
+          <Link to='/products' className='landing_page_btn'>
               <span>Explore</span>
               <img src={Arrow} alt='arrow' />
-          </div>
+          </Link>
         </div>
       </div>
 

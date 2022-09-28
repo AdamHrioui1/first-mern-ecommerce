@@ -81,7 +81,7 @@ function TableItem({ product }) {
                     <img src={images[0].secure_url} alt="" />
                 </div>
             </li>
-            <li className='table__item__name'>{name}</li>
+            <li className='table__item__name'>{name.length > 20 ? name.slice(0, 20) + '...' : name}</li>
             <li>
                 <select onChange={(e) => handleSize(e.target.value, _id)} value={product.size} className='select__size'>
                     {

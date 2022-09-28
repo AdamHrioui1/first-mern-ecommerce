@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import Cart from '../icons/Cart.svg'
 import Cart2 from '../icons/Cart2.svg'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import GlobaleCotext from "../../GlobaleCotext";
 
@@ -13,6 +13,8 @@ function Header() {
   const [cart] = state.userApi.cart
   const [isAdmin] = state.userApi.isAdmin
   const [isLogged] = state.userApi.isLogged
+
+  const location = useLocation()
 
   const handleMenu = () => {
     if(menuIsOn.length === 0) {
@@ -51,7 +53,10 @@ function Header() {
   useEffect(() => {
     check()
   }, [])
-  
+
+  useEffect(() => {
+    console.log(location)
+  }, [location])
   
   return (
     <nav className={`navbar ${isSticky ? 'sticky' : ''}`}>
@@ -82,19 +87,25 @@ function Header() {
               <Link to='/orders' onClick={handleMenu}>Orders</Link>
             </li>
           }
-          <li>
-            <Link to='/contact' onClick={handleMenu}>Contact</Link>
-          </li>
           {
             !isLogged && 
             <li>
               <Link to='/login' onClick={handleMenu}>Login</Link>
             </li>
           }
+          <li>
+            <Link to='/contact' onClick={handleMenu}>Contact</Link>
+          </li>
+          <li>
+            <Link to='/about' onClick={handleMenu}>About</Link>
+          </li>
+
           {isLogged && <li onClick={logout}>Logout</li>}
         </ul>
         {
-          <h1 className={`logo ${isRed ? 'red' : ''}`}>BowWoow.</h1>
+          <Link to='/'>
+            <h1 className={`logo ${isRed ? 'red' : ''}`}>BowWoow.</h1>
+          </Link>
         }
         {isAdmin && <h2 className='admin__dashboard' >Admin Dashboard</h2>}  
         <div className="right_navbar">
@@ -106,6 +117,7 @@ function Header() {
             </div>
           }
         </Link>
+
         <div className="burger">
             <input type="checkbox" className={`menu_checkbox ${menuIsOn}`} id="menu_checkbox" />
             {

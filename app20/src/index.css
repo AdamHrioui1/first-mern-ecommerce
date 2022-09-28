@@ -10,6 +10,8 @@
   --red: #E45826;
   --primary-color: #E6D5B8;
   --headers-color: #838178;
+
+  user-select: none;
 }
 
 body, html {
@@ -96,7 +98,7 @@ input[type=number] {
 ::-webkit-scrollbar-thumb {
   background: var(--headers-color);
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 20px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
@@ -106,6 +108,10 @@ input[type=number] {
 
 /*----------------- Header -------------------*/
 @import url('./components/header/Header.css');
+
+
+/*----------------- Footer -------------------*/
+@import url('./components/footer/Footer.css');
 
 
 /*----------------- Home --------------------*/
@@ -135,23 +141,31 @@ input[type=number] {
 /*----------------- Add Product---- -----------*/
 @import url('./components/pages/add_product/AppProduct.css');
 
-/*----------------- Add Product---- -----------*/
 @import url('./components/pages/orders/OrderItem.css');
 
-/*----------------- Upload Icon Animation -----*/
 @import url('./components/pages/UploadIcon/UploadIcon.css');
 
-/*----------------- Upload Icon Animation -----*/
 @import url('./components/pages/Loading/Loading.css');
 
-/*----------------- Loading Products ----------*/
 @import url('./components/pages/LoadingProducts/LoadingProducts.css');
 
 @import url('./components/pages/singleProduct/SingleProductLoading.css');
 
+@import url('./components/filter/Filter.css');
+
+@import url('./components/pagination/Pagination.css');
+
+@import url('./components/pages/Loading/LoadingCategories.css');
+
+@import url('./components/pages/about/About.css');
+
+@import url('./components/pages/privacyPolicy/PrivacyPolicy.css');
+
+@import url('./components/pages/termsCondition/TermsConditions.css');
+
 @media only screen and (max-width: 700px) {
     * {
-      cursor: default;
+      cursor: default !important;
       user-select: none;
     }
 }

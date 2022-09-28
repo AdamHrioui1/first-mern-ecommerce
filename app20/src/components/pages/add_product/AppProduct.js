@@ -4,43 +4,55 @@ import axios from 'axios'
 import GlobaleContext from '../../../GlobaleCotext'
 import UploadIcon from '../UploadIcon/UploadIcon'
 import Loading from '../Loading/Loading'
+import { useQuill } from 'react-quilljs';
+import 'quill/dist/quill.snow.css';
+
 
 function AppProduct() {
     const state = useContext(GlobaleContext)
     const [token] = state.token
     const [callback, setCallback] = state.callback
-
-    const [file, setFile] = useState([])
-    const [image, setImage] = useState({})
+    
+    // const [file, setFile] = useState([])
+    const [files, setfiles] = useState([])
+    const [image, setImage] = useState([])
     const [name, setName] = useState('')
     const [prevPrice, setPrevPrice] = useState(0)
     const [price, setPrice] = useState('')
+    const [brand, setBrand] = useState('')
+    const [color, setColor] = useState('')
     const [description, setDescription] = useState('')
-    const [quantity0, setQuantity0] = useState(0)
-    const [quantity1, setQuantity1] = useState(0)
-    const [quantity2, setQuantity2] = useState(0)
-    const [quantity3, setQuantity3] = useState(0)
-    const [quantity4, setQuantity4] = useState(0)
-    const [quantity5, setQuantity5] = useState(0)
-    const [quantity6, setQuantity6] = useState(0)
-
+    const [quantity0, setQuantity0] = useState(10)
+    const [quantity1, setQuantity1] = useState(10)
+    const [quantity2, setQuantity2] = useState(10)
+    const [quantity3, setQuantity3] = useState(10)
+    const [quantity4, setQuantity4] = useState(10)
+    const [quantity5, setQuantity5] = useState(10)
+    const [quantity6, setQuantity6] = useState(10)
+    
     const [loading, setLoading] = useState(false)
     const [deleting, setDeleting] = useState(false)
-
+    
+    const { quill, quillRef } = useQuill();
+    const [quillValue, setQuillValue] = useState('')
     
     const handleAddProduct = async e => {
         e.preventDefault()
 
         if(Object.keys(image).length === 0) return alert('Please enter an image!')
         if(name.length === 0) return alert('Please enter a product name!')
+        if(brand.length === 0) return alert('Please enter a product brand!')
         if(price.length === 0) return alert('Please enter a price!')
         if(description.length === 0) return alert('Please enter a description!')
 
         try {
-            await axios.post('/api/product', {
-                name: name, 
+            setLoading(true)
+            const res = await axios.post('/api/product', {
+                name: name,
+                brand: brand,
                 prevPrice: prevPrice, 
-                price: price, 
+                price: price,
+                color: color,
                 description: description, 
                 sizeAndQuantity: [
                     {
@@ -79,62 +91,126 @@ function AppProduct() {
                 }
             })
 
-            setFile('')
+            res && setLoading(false)
+
+            // setFile('')
             setImage('')
             setName('')
             setPrevPrice('')
             setPrice('')
+            setBrand('')
+            setColor('')
             setDescription('')
-            setQuantity0('')
-            setQuantity1('')
-            setQuantity2('')
-            setQuantity3('')
-            setQuantity4('')
-            setQuantity5('')
-            setQuantity6('')
+            setQuantity0(10)
+            setQuantity1(10)
+            setQuantity2(10)
+            setQuantity3(10)
+            setQuantity4(10)
+            setQuantity5(10)
+            setQuantity6(10)
             
             setCallback(!callback)
 
             alert('Upload Successfuly!')
         } catch (err) {
+            setLoading(false)
             console.log(err.response.data.msg)
         }
     }
 
-    const handleFile = (e) => {
-        console.log(e.target.files)
-        const file = e.target.files[0]
-        try {
-            setLoading(true)
-            const uploadImage = async () => {
-                if(file.length === 0)
-                    return alert('No file uploaded!')
+    // const handleFile = (e) => {
+    //     console.log(e.target.files)
+    //     const file = e.target.files
+    //     try {
+    //         setLoading(true)
+    //         const uploadImage = async () => {
+    //             if(file.length === 0)
+    //                 return alert('No file uploaded!')
                 
-                if(file.type !== 'image/png' && file.type !== 'image/jpeg' && file.type !== 'image/webp')
-                    return alert('File type no supported!')
+    //             if(file.type !== 'image/png' && file.type !== 'image/jpeg' && file.type !== 'image/webp')
+    //                 return alert('File type no supported!')
                 
-                if(file.size > 2*1024*1024)
-                    return alert('File size is too big!')
+    //             if(file.size > 2*1024*1024)
+    //                 return alert('File size is too big!')
                 
-                const formData = new FormData()
-                formData.append('file', file)
+    //             const formData = new FormData()
+    //             formData.append('files', file)
 
-                const res = await axios.post('/api/upload', formData, {
-                    headers: { 
-                        'Authorization': token,
-                        'content-type': 'multipart/form-data'
-                    }
-                })
+    //             const res = await axios.post('/api/upload', formData, {
+    //                 headers: { 
+    //                     'Authorization': token,
+    //                     'content-type': 'multipart/form-data'
+    //                 }
+    //             })
 
-                setLoading(false)
-                setImage(res.data)
-            }
-            uploadImage()
-        } catch (err) {
+    //             setLoading(false)
+    //             setImage(res.data)
+    //         }
+    //         uploadImage()
+    //     } catch (err) {
+    //         setLoading(false)
+    //         console.log(err)
+    //     }
+    // }
+
+    
+  const handleFile = async () => {
+    try {
+        setLoading(true)
+        var filesSize = 0
+        var matchedFiles = []
+        var imagesUrl = []
+
+        console.log(files)
+
+        if(!files || files.length === 0 || Object.keys(files).length === 0 || files === null) {
             setLoading(false)
-            console.log(err)
+            return alert("No file uploaded!")
         }
+
+        files.forEach(f => {
+            filesSize += f.size
+        });
+
+        if(filesSize > 10 * 1024 * 1024) {
+            setLoading(false)
+            return alert("Files size is too big")
+        }
+
+        files.forEach(f => {
+            if(f.type === 'image/png' || f.type === 'image/jpeg' || f.type === 'image/webp' || f.type === 'image/svg+xml') {
+            matchedFiles.push(f)
+            }
+        })
+        
+        console.log(files)
+
+        for(let f of matchedFiles) {
+            var formData = new FormData()
+            formData.append('files', f)
+            console.log('uploading...')
+            
+            const res = await axios.post('/api/upload', formData, {
+            headers: { 
+                'Authorization': token,
+                'content-type': 'multipart/form-data'
+            }
+            })
+            console.log(res)
+            imagesUrl.push(res.data)
+        }
+        setImage(imagesUrl)
+        setLoading(false)
+
+    } catch (err) {
+        setLoading(false)
+        console.log(err)
     }
+  }
+
+  useEffect(() => {
+    files.length > 0 && handleFile()
+  }, [files])
 
     const removePhoto = async () => {
         if(window.confirm('Are you sure you want to delete this photo?')) {
@@ -157,6 +233,43 @@ function AppProduct() {
         }
     }
 
+    const removeimage = async (id) => {
+        var newimages = []
+        try {
+        //   setremoving(true)
+          
+        await axios.post('/api/destroy', { public_id: id }, {
+            headers: {
+                'Authorization': token
+            }
+        })
+          image.forEach(i => {
+            if(i.public_id !== id) {
+              newimages.push(i)
+            }
+          })
+    
+          setImage([...newimages])
+        //   setremoving(false)
+          alert('Image removed successfuly!')
+        } catch (err) {
+        //   setremoving(false)
+          console.log(err)
+        }
+    }
+
+    useEffect(() => {
+        if (quill) {
+          quill.on('text-change', () => {
+            console.log(quillRef.current.firstChild.innerHTML)
+            setDescription(quillRef.current.firstChild.innerHTML)
+          })
+        }
+    }, [quill])
+
+    // console.log(description)
+    
+
     return (
       <div className="add__product__page">  
         <div className='page__header'>
@@ -169,7 +282,7 @@ function AppProduct() {
             {
                 Object.keys(image).length === 0 && !loading ?
                 <>
-                    <input type="file" name='addimage' id='addimage' onChange={(e) => handleFile(e)} />
+                    <input type="file" name='addimage' id='addimage' onChange={(e) => setfiles([...e.target.files])} multiple />
                     <label htmlFor="addimage" className='add__photo__Container'>
                     </label>
                     <img src={AddPhoto} alt="add photo svg" />
@@ -182,12 +295,24 @@ function AppProduct() {
                 <Loading />
                 :
                 <>
-                    <div className="upload__image__container">
+                    {/* <div className="upload__image__container">
                         <div id='add__photo'>
                             <img className='add__photo__img' src={image.secure_url} alt="add photo svg" />
                             <span className="removeImage" onClick={removePhoto}>&#10006;</span>
                         </div>
-                    </div>
+                    </div> */}
+                    {
+                        
+                        image.length > 0 && image.map((i, index) => {
+                            return (
+                            <div className='small_img'>
+                                <img src={i.secure_url} key={index} alt="" width={70} />
+                                <p onClick={() => removeimage(i.public_id)} >x</p>
+                            </div>
+                            )
+                        })
+                        
+                    }
                 </>
             }
             </div>
@@ -202,6 +327,16 @@ function AppProduct() {
                     </div>
 
                     <div className='input__container'>
+                        <input type='text' className='input' placeholder=' ' name='product_Brand' id='product_Brand' onChange={e => setBrand(e.target.value)} value={brand} />
+                        <label htmlFor='product_Brand' className='label'>Product brand</label>  
+                    </div>
+
+                    <div className='input__container color'>
+                        <input type='color' className='input color' placeholder=' ' name='product_color' id='product_color' onChange={e => setColor(e.target.value)} value={color} />
+                        <label htmlFor='product_color' className='label color'>Product color</label>  
+                    </div>
+
+                    <div className='input__container'>
                         <input type='number' className='input' placeholder=' ' name='prev_price' id='prev_price' onChange={e => setPrevPrice(parseFloat(e.target.value))} value={prevPrice} />
                         <label htmlFor='prev_price' className='label'>Previous price</label>  
                     </div>
@@ -211,9 +346,13 @@ function AppProduct() {
                         <label htmlFor='price' className='label'>Price</label>  
                     </div>
 
-                    <div className='input__container textarea'>
+                    {/* <div className='input__container textarea'>
                         <textarea className='input textarea' placeholder=' ' name='description' onChange={e => setDescription(e.target.value)} value={description} />
                         <label htmlFor='description' className='label'>Description</label>  
+                    </div> */}
+                    
+                    <div style={{ width: '100%', height: 200, marginBottom: window.innerWidth > 500 ? 80 : 130 }}>
+                        <div ref={quillRef} />
                     </div>
 
                     <div className="sizeAndQuantity">
@@ -242,7 +381,7 @@ function AppProduct() {
                         </div>
                     </div>
                     
-                    <button type='submit' className='form__button black'>Upload</button>
+                    <button type='submit' className='form__button black'>{loading ? 'Uploading...': 'Upload'}</button>
                 </form>
             </div>
         </div>

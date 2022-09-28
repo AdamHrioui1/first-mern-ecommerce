@@ -19,6 +19,7 @@ app.use('/user', require('./routes/UserRoutes'))
 app.use('/api', require('./routes/ProductRoutes'))
 app.use('/api', require('./routes/Cloudinary'))
 app.use('/api', require('./routes/PaymentRoutes'))
+app.use('/api', require('./routes/MailRoutes'))
 
 connection()
 

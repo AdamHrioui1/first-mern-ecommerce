@@ -117,7 +117,7 @@
 }
 
 .home_container .landing_page_img {
-    position: absolute;
+    position: fixed;
     top: 50%;
     transform: translate(-15px, -50%) rotate(-30deg);
     right: 50px;

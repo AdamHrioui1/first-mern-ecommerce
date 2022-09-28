@@ -8,7 +8,7 @@ function UserApi(token, callback) {
     const [history, setHistory] = useState([])
 
     const addToCart = async (product) => {
-        if(!isLogged) return alert('Please login to continue shopping!')
+        if(!isLogged) return document.location.href = '/login'
         
         const check = cart.some(item => {
             return item._id === product._id 

@@ -1,0 +1,9 @@
+.privacy_policy_container {
+    padding: 0 40px 40px;
+}
+
+@media only screen and (max-width: 500px) {
+    .privacy_policy_container {
+        padding: 0 20px 20px;
+    }
+}

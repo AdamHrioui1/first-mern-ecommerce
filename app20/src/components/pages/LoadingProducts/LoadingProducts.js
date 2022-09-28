@@ -4,11 +4,6 @@ function LoadingProducts() {
     const loadingProducts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     return (
         <div className='product_page'>
-            <div className='page__header'>
-                <h1>Our Products</h1>
-                <div className="border"></div>
-            </div>
-
             <div className='products__handler'>
                 {
                     loadingProducts.map((product, index) => {
@@ -21,7 +16,6 @@ function LoadingProducts() {
                         )
                     })
                 }
-                    
             </div>
         </div>
     )

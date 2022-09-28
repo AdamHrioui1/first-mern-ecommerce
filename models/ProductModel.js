@@ -24,10 +24,17 @@ const ProductSchema = new mongoose.Schema({
         type: Array,
         default: []
     },
+    color: {
+        type: String,
+    },
     images: {
         type: Array,
         default: []
-    }
+    },
+    brand: {
+        type: String,
+        required: true
+    },
 }, {
     timestamps: true
 })

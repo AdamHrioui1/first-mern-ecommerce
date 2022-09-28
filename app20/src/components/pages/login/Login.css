@@ -65,6 +65,10 @@
     background-color: #fff;
 }
 
+.input__container.color {
+    border: none;
+}
+
 .input__container .input {
     padding: 8px;
     width: 100%;
@@ -73,6 +77,12 @@
     outline: none;
     background-color: transparent;
     color: var(--headers-color);
+}
+
+.input__container .input.color {
+    padding: 0;
+    height: 40px;
+    cursor: pointer;
 }
 
 .input__container .label {
@@ -118,9 +128,17 @@
     font-weight: 700;
 }
 
+.label.color {
+    background-color: transparent;
+}
+
 .input__container > input:focus{
     border-radius: 6px;
     border: 1px solid var(--headers-color);
+}
+
+.input__container textarea {
+    resize: none;
 }
 
 .form__button {

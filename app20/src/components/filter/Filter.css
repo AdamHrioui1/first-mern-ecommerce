@@ -1,0 +1,225 @@
+.filter__container {
+    position: relative;
+    width: 100%;
+    padding: 10px 40px;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+
+.filter__elements__container {
+    position: relative;
+    margin-right: 20px;
+    width: 70vw;
+    /* height: 80px; */
+
+    overflow-y: auto;
+}
+
+
+.filter__elements {
+    /* position: absolute;
+    top: 0;
+    left: 0; */
+
+    width: auto;
+    max-height: 150px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* flex-wrap: nowrap; */
+    
+    position: relative;
+    flex-wrap: wrap;
+
+    /* overflow-x: scroll; */
+
+    transition: .7s all ease;
+}
+
+.filter__element {
+    padding: 5px 14px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+
+    display: inline-block;
+
+    border: 1px solid var(--black);
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.filter__element p {
+    padding: 0;
+    margin: 0;
+    white-space: nowrap;
+    
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.filter__element:hover, .filter__element.active {
+    background-color: var(--black);
+    color: #fff;
+    border: 1px solid var(--black);
+}
+
+.search__container {
+    margin-left: auto;
+    width: 350px;
+
+    display: flex;
+    
+    border-radius: 20px;
+    border: 1px solid #000;
+    overflow: hidden;
+}
+
+.search__btn {
+    background-color: transparent;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    outline: none;
+
+    cursor: pointer;
+}
+
+.search__btn img {
+    padding-right: 10px;
+    width: 30px;
+    background-color: transparent;
+}
+
+.search__container input {
+    width: 100%;
+    height: 100%;
+    padding: 10px 14px;
+
+    border: none;
+    outline: none;
+}
+
+@media only screen and (max-width: 700px) {
+    .filter__container {
+        flex-direction: column;
+    }
+
+    .filter__elements__container {
+        height: 68px;
+        width: 100%;
+
+        margin: 0;
+        order: 2;    
+    }
+
+    .filter__elements__container.ld {
+        margin-left: 40px;
+    }
+    
+    .filter__container::-webkit-scrollbar {
+        background-color: transparent;
+        width: 2px;
+        cursor: pointer;
+    }
+      
+      /* Track */
+    .filter__container::-webkit-scrollbar-track {
+        background: transparent;
+        background-clip: content-box;   /* THIS IS IMPORTANT */
+        cursor: pointer;
+    }
+      
+      /* Handle */
+    .filter__container::-webkit-scrollbar-thumb {
+        background: var(--headers-color);
+        cursor: pointer;
+        border-radius: 20px;
+    }
+    .filter__container::-webkit-scrollbar-track {
+        background: transparent;
+        background-clip: content-box;
+        cursor: pointer;
+    }
+    
+    .filter__elements {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: auto;
+        max-height: 50px;
+
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+
+        /* overflow-x: scroll; */
+
+        transition: .7s all ease;
+    }
+
+    .search__container {
+        width: 100%;
+        margin: 0;
+        margin-bottom: 15px;
+        order: 1;
+    }
+}
+
+
+@media only screen and (max-width: 450px) {
+    .filter__container {
+        padding: 10px 20px
+    }
+
+    .filter__element {   
+        margin-bottom: 0px;
+    }
+
+    .filter__elements__container {
+        height: 40px;
+    }
+    
+    .filter__elements__container.ld {
+        margin-left: 20px;
+    }
+    
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    body::-webkit-scrollbar {
+        display: none;        
+    }
+      
+    /* Track */
+    body::-webkit-scrollbar-track {
+        display: none;        
+    }
+      
+    /* Handle */
+    body::-webkit-scrollbar-thumb {
+        display: none;        
+    }
+
+    body::-webkit-scrollbar-track {
+        display: none;        
+    }
+
+}
+
+
+@media only screen and (max-width: 300px) {
+    .filter__element {
+        padding: 3px 14px;
+        margin-right: 9px;
+    }
+}

@@ -1,0 +1,16 @@
+.about_us {
+    padding: 40px;
+}
+
+@media only screen and (max-width: 500px) {
+    .about_us {
+        padding: 20px;
+    }    
+}
+
+@media only screen and (max-width: 300px) {
+    .about_us h1 {
+        font-size: 25px;
+    }
+}
+
