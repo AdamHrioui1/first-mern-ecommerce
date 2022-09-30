@@ -70,7 +70,6 @@ const UserCtrl = {
             jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
                 if(err) return res.status(400).json({ msg: 'Invalid Authentication!'})
 
-                // console.log({user})
                 const accesstoken = createAccessToken({ id: user.id })
                 return res.status(200).json({ accesstoken })
             })

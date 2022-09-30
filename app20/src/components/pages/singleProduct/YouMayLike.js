@@ -5,7 +5,7 @@ function YouMayLike({ product }) {
   const { _id, name, images, price } = product
 
   return (
-    <Link to={`/products/${_id}`} className='presented_product' onClick={() => console.log({ _id, product })}>
+    <Link to={`/products/${_id}`} className='presented_product'>
       <div className="presented_product_img_container">
           <img src={images[0].secure_url} alt={name} />
       </div>

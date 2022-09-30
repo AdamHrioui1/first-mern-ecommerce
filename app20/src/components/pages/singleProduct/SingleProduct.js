@@ -10,7 +10,6 @@ import Loading from '../Loading/Loading'
 function SingleProduct() {
     const state = useContext(GlobaleCotext)
     const params = useParams()
-    const [products] = state.products
     const [allproducts] = state.AllProducts
     const addToCart = state.userApi.addToCart
     const [isLogged] = state.userApi.isLogged
@@ -60,17 +59,14 @@ function SingleProduct() {
 
     useEffect(() => {
         setTimeout(() => {
-            if (showMsg) {  
-                setShowMsg(false)
-            }
+            if (showMsg) setShowMsg(false)
         }, 2000);
     }, [addToCart])
 
     useEffect(() => {
       window.scrollTo(0, 0)
     }, [])
-    
-    
+       
     const addToCartShowMsg = (product) => {
         addToCart(product)
         if(!productInCart && isLogged) {
@@ -116,7 +112,6 @@ function SingleProduct() {
         if (allproducts.length !== 0) {    
             const rn = Math.floor(Math.random() * ((allproducts.length - 8) - 1 + 1)) + 1
             setRandomProducts(rn)
-            console.log(rn)
         }
     }, [product])
     
@@ -187,7 +182,7 @@ function SingleProduct() {
     useEffect(() => {
         if(window.innerWidth > 1000) {
             setShowedProductsWidth(20)
-           similarProductsCounter > 0 ? setsimilarProductsShowPrevBtn(true) : setsimilarProductsShowPrevBtn(false)
+            similarProductsCounter > 0 ? setsimilarProductsShowPrevBtn(true) : setsimilarProductsShowPrevBtn(false)
         }
         else if(window.innerWidth <= 1000 && window.innerWidth > 650) {
             setShowedProductsWidth(25)
@@ -247,10 +242,7 @@ function SingleProduct() {
             setShowedProductsWidth(20)
             if(showedProductsCounter > 0) {
                 setShowedProductsCounter(showedProductsCounter-1)
-                console.log(showedProductsCounter-1)
-                console.log(showedProductsWidth)
                 setShowPrevBtn(true)
-                console.log(showPrevBtn)
             }
             else {
                 setShowPrevBtn(false)
@@ -258,27 +250,15 @@ function SingleProduct() {
         }
         else if(window.innerWidth <= 1000 && window.innerWidth > 650) {
             setShowedProductsWidth(25)
-            if(showedProductsCounter > 0) {
-                setShowedProductsCounter(showedProductsCounter-1)
-                console.log(showedProductsCounter-1)
-                console.log(showedProductsWidth)
-            }
+            if(showedProductsCounter > 0) setShowedProductsCounter(showedProductsCounter-1)
         }
         else if(window.innerWidth <= 650 && window.innerWidth > 550) {
             setShowedProductsWidth(33)
-            if(showedProductsCounter > 0) {
-                setShowedProductsCounter(showedProductsCounter-1)
-                console.log(showedProductsCounter-1)
-                console.log(showedProductsWidth)
-            }
+            if(showedProductsCounter > 0) setShowedProductsCounter(showedProductsCounter-1)
         }
         else if(window.innerWidth <= 550) {
             setShowedProductsWidth(50)
-            if(showedProductsCounter > 0) {
-                setShowedProductsCounter(showedProductsCounter-1)
-                console.log(showedProductsCounter-1)
-                console.log(showedProductsWidth)
-            }
+            if(showedProductsCounter > 0) setShowedProductsCounter(showedProductsCounter-1)
         }
     }
 
@@ -464,11 +444,6 @@ function SingleProduct() {
                             allproducts.slice(randomProducts, randomProducts+8).map((p, i) => {
                                 return <YouMayLike key={i} product={p} />
                             })
-                            
-                            /*allproducts.length !== 0 ?
-                            allproducts.map((p, i) => {
-                                return (p.brand === product.brand) && <YouMayLike key={i} product={p} />
-                            })*/
 
                             : <Loading />
                         }

@@ -25,7 +25,7 @@ export const DataProvider = ({ children }) => {
           setAllProducts(resProducts.data.products)
           setProducts(res.data.products)
         } catch (err) {
-          console.log(err)
+          console.log(err.response.data.msg)
         }
     }
     

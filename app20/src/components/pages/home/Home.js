@@ -8,8 +8,8 @@ import GlobalCotext from '../../../GlobaleCotext'
 
 function Home() {
   const state = useContext(GlobalCotext)
-  const [isRed, setIsRed] = state.isRed
-  const [isSticky, setIsSticky] = state.isSticky
+  const [setIsRed] = state.isRed
+  const [setIsSticky] = state.isSticky
 
   const explore = () => {
     setIsRed(false)
@@ -37,7 +37,6 @@ function Home() {
       </div>
 
       {/*-------------- Landing Page for Mobile -------------*/}
-      
       <div className='mobile_landing_page'>
         <div className="mobile_row">
           <h2>LEGEND HAVE OWN PLACES</h2>
@@ -49,7 +48,6 @@ function Home() {
         </div>
 
         <div className='mobile_row' >
-          {/* <p>No shoe will be worth wearing, despite its quality and value unless you feel comfortable in it.</p> */}
           <p>Think about your feet, care about your style and the manner of walking.</p>
           <Link to='/products' className='landing_page_btn'>
               <span>Explore</span>

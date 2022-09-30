@@ -13,29 +13,21 @@
     position: relative;
     margin-right: 20px;
     width: 70vw;
-    /* height: 80px; */
 
     overflow-y: auto;
 }
 
 
 .filter__elements {
-    /* position: absolute;
-    top: 0;
-    left: 0; */
-
     width: auto;
     max-height: 150px;
 
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    /* flex-wrap: nowrap; */
     
     position: relative;
     flex-wrap: wrap;
-
-    /* overflow-x: scroll; */
 
     transition: .7s all ease;
 }
@@ -88,7 +80,6 @@
 
     border: none;
     outline: none;
-
     cursor: pointer;
 }
 
@@ -161,8 +152,6 @@
         align-items: center;
         justify-content: flex-start;
         flex-wrap: nowrap;
-
-        /* overflow-x: scroll; */
 
         transition: .7s all ease;
     }

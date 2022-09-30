@@ -5,8 +5,8 @@ export default class PaypalButton extends React.Component {
     render() {
         const onSuccess = (payment) => {
             // Congratulation, it came here means everything's fine!
-                    this.props.tranSuccess(payment)
-            		// You can bind the "payment" object's value to your state or props or whatever here, please see below for sample returned data
+            this.props.tranSuccess(payment)
+            // You can bind the "payment" object's value to your state or props or whatever here, please see below for sample returned data
         }
  
         const onCancel = (data) => {
@@ -17,7 +17,7 @@ export default class PaypalButton extends React.Component {
  
         const onError = (err) => {
             // The main Paypal's script cannot be loaded or somethings block the loading of that script!
-            console.log("Error!", err);
+            console.log("Error!", err.message);
             // Because the Paypal's main script is loaded asynchronously from "https://www.paypalobjects.com/api/checkout.js"
             // => sometimes it may take about 0.5 second for everything to get set, or for the button to appear
         }
@@ -28,9 +28,13 @@ export default class PaypalButton extends React.Component {
         // Document on Paypal's currency code: https://developer.paypal.com/docs/classic/api/currency_codes/
  
         const client = {
-            sandbox: 'YOUR-SANDBOX-APP-ID',
+            sandbox:    'YOUR-SANDBOX-APP-ID',
             production: process.env.REACT_APP_PAYPAL_SANDBOX_ID,
         }
+
+        console.log(process.env)
+        console.log(process.env.REACT_APP_PAYPAL_SANDBOX_ID)
+        
         // In order to get production's app-ID, you will have to send your app to Paypal for approval first
         // For sandbox app-ID (after logging into your developer account, please locate the "REST API apps" section, click "Create App"):
         //   => https://developer.paypal.com/docs/classic/lifecycle/sb_credentials/
@@ -48,14 +52,14 @@ export default class PaypalButton extends React.Component {
         
         return (
             <PaypalExpressBtn 
-            env={env} 
-            client={client} 
-            currency={currency} 
-            total={total} 
-            onError={onError} 
-            onSuccess={onSuccess} 
-            onCancel={onCancel}
-            style={style}
+                env={env} 
+                client={client} 
+                currency={currency} 
+                total={total} 
+                onError={onError} 
+                onSuccess={onSuccess} 
+                onCancel={onCancel}
+                style={style}
             />
         );
     }

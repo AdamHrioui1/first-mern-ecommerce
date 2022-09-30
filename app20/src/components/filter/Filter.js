@@ -1,52 +1,22 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from "swiper";
 import GlobaleCotext from '../../GlobaleCotext';
-import Loading from '../pages/Loading/Loading';
 import LoadingCategories from '../pages/Loading/LoadingCategories';
 import SearchIcon from '../icons/Search.svg'
 
 function Filter() {
-
     const state = useContext(GlobaleCotext)
     const [search, setSearch] = state.search
-    const [products, setProducts] = state.products
+    const [products] = state.products
     const [category, setCategory] = state.category
     const [allproducts] = state.AllProducts
     const [page, setPage] = state.page
 
-    const [isDown, setIsDown] = useState(false)
     const [searcProducthName, setSearchProductName] = useState('')
     const [categories, setCategories] = useState([])
 
-    var scrollLeft = 20;
-    var clientX = 0;
-    var x = 0;
-    var scrollX = 0;
-
     const slider = useRef()
-
-
-    const mouseDown = e => {
-        setIsDown(true)
-        clientX = e.clientX
-    };
-
-    const mouseUp = () => {
-        setIsDown(false)
-    };
-
-    const mouseMove = e => {
-        if (isDown) {
-            slider.current.scrollLeft = scrollX - e.clientX + clientX;
-            console.log({ calc: scrollX + e.clientX - clientX });
-            scrollX = scrollX - e.clientX + clientX
-            clientX = e.clientX
-            slider.current.style.left = (e.clientX)*2 + 'px'
-        }
-    };
 
     useEffect(() => {       
         if(allproducts.length !== 0) {
@@ -65,6 +35,7 @@ function Filter() {
 
     useEffect(() => {
         setCategory('')
+        setPage(1)
     }, [search])
     
     const Search = e => {

@@ -1,4 +1,3 @@
-
 .btns_conatiner {
   margin: 20px 0;
   width: 100%;
@@ -28,6 +27,7 @@
   cursor: pointer;
   transition: .4s;
 }
+
 .btns_conatiner button:hover {
   color: #ffffff;
   background-color: #aaaaaa;
@@ -41,6 +41,7 @@ button.active {
   font-weight: 700;
   background-color: var(--black);
 }
+
 .btns_conatiner svg {
   width: 10px;
 }
@@ -56,6 +57,7 @@ button.active {
     background-color: var(--black);
   }
 }
+
 @media only screen and (max-width: 550px) {
   .btns_conatiner button {
     margin: 0;

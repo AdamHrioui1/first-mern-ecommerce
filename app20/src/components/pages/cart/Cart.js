@@ -93,7 +93,6 @@ function Cart() {
           <PaypalButton total={total} tranSuccess={tranSuccess} />
         </div>
       </div>
-
     </div>
   )
 }

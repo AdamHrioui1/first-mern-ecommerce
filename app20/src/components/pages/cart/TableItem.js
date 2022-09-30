@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import GlobaleContext from '../../../GlobaleCotext'
 import Cross from '../../icons/Cross.svg'
 
@@ -9,11 +9,11 @@ function TableItem({ product }) {
     const [token] = state.token
     const [cart, setCart] = state.userApi.cart
 
-    const [size, setSize] = useState(7)
+    const [setSize] = useState(7)
 
     const addtocart = async () => {
         try {
-            const res = await axios.patch('/user/addtocart', {
+            await axios.patch('/user/addtocart', {
                 cart: cart
             }, {
                 headers: {

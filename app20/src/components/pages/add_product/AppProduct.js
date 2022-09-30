@@ -13,7 +13,6 @@ function AppProduct() {
     const [token] = state.token
     const [callback, setCallback] = state.callback
     
-    // const [file, setFile] = useState([])
     const [files, setfiles] = useState([])
     const [image, setImage] = useState([])
     const [name, setName] = useState('')
@@ -32,9 +31,7 @@ function AppProduct() {
     
     const [loading, setLoading] = useState(false)
     const [deleting, setDeleting] = useState(false)
-    
     const { quill, quillRef } = useQuill();
-    const [quillValue, setQuillValue] = useState('')
     
     const handleAddProduct = async e => {
         e.preventDefault()
@@ -93,7 +90,6 @@ function AppProduct() {
 
             res && setLoading(false)
 
-            // setFile('')
             setImage('')
             setName('')
             setPrevPrice('')
@@ -110,165 +106,97 @@ function AppProduct() {
             setQuantity6(10)
             
             setCallback(!callback)
-
             alert('Upload Successfuly!')
         } catch (err) {
             setLoading(false)
             console.log(err.response.data.msg)
         }
     }
-
-    // const handleFile = (e) => {
-    //     console.log(e.target.files)
-    //     const file = e.target.files
-    //     try {
-    //         setLoading(true)
-    //         const uploadImage = async () => {
-    //             if(file.length === 0)
-    //                 return alert('No file uploaded!')
-                
-    //             if(file.type !== 'image/png' && file.type !== 'image/jpeg' && file.type !== 'image/webp')
-    //                 return alert('File type no supported!')
-                
-    //             if(file.size > 2*1024*1024)
-    //                 return alert('File size is too big!')
-                
-    //             const formData = new FormData()
-    //             formData.append('files', file)
-
-    //             const res = await axios.post('/api/upload', formData, {
-    //                 headers: { 
-    //                     'Authorization': token,
-    //                     'content-type': 'multipart/form-data'
-    //                 }
-    //             })
-
-    //             setLoading(false)
-    //             setImage(res.data)
-    //         }
-    //         uploadImage()
-    //     } catch (err) {
-    //         setLoading(false)
-    //         console.log(err)
-    //     }
-    // }
-
     
-  const handleFile = async () => {
-    try {
-        setLoading(true)
-        var filesSize = 0
-        var matchedFiles = []
-        var imagesUrl = []
+    const handleFile = async () => {
+        try {
+            setLoading(true)
+            var filesSize = 0
+            var matchedFiles = []
+            var imagesUrl = []
 
-        console.log(files)
+            console.log(files)
 
-        if(!files || files.length === 0 || Object.keys(files).length === 0 || files === null) {
-            setLoading(false)
-            return alert("No file uploaded!")
-        }
-
-        files.forEach(f => {
-            filesSize += f.size
-        });
-
-        if(filesSize > 10 * 1024 * 1024) {
-            setLoading(false)
-            return alert("Files size is too big")
-        }
-
-        files.forEach(f => {
-            if(f.type === 'image/png' || f.type === 'image/jpeg' || f.type === 'image/webp' || f.type === 'image/svg+xml') {
-            matchedFiles.push(f)
+            if(!files || files.length === 0 || Object.keys(files).length === 0 || files === null) {
+                setLoading(false)
+                return alert("No file uploaded!")
             }
-        })
-        
-        console.log(files)
 
-        for(let f of matchedFiles) {
-            var formData = new FormData()
-            formData.append('files', f)
-            console.log('uploading...')
-            
-            const res = await axios.post('/api/upload', formData, {
-            headers: { 
-                'Authorization': token,
-                'content-type': 'multipart/form-data'
+            files.forEach(f => {
+                filesSize += f.size
+            });
+
+            if(filesSize > 10 * 1024 * 1024) {
+                setLoading(false)
+                return alert("Files size is too big")
             }
+
+            files.forEach(f => {
+                if(f.type === 'image/png' || f.type === 'image/jpeg' || f.type === 'image/webp' || f.type === 'image/svg+xml') {
+                    matchedFiles.push(f)
+                }
             })
-            console.log(res)
-            imagesUrl.push(res.data)
-        }
-        setImage(imagesUrl)
-        setLoading(false)
 
-    } catch (err) {
-        setLoading(false)
-        console.log(err)
-    }
-  }
-
-  useEffect(() => {
-    files.length > 0 && handleFile()
-  }, [files])
-
-    const removePhoto = async () => {
-        if(window.confirm('Are you sure you want to delete this photo?')) {
-            try {
-                setDeleting(true)
-                const res = await axios.post(`/api/destory`, { public_id: image.public_id }, {
-                    headers: {
-                        'Authorization': token
+            for(let f of matchedFiles) {
+                var formData = new FormData()
+                formData.append('files', f)
+                
+                const res = await axios.post('/api/upload', formData, {
+                    headers: { 
+                        'Authorization': token,
+                        'content-type': 'multipart/form-data'
                     }
                 })
-
-                console.log(res)
-                setDeleting(false)
-                setImage({})
-                setCallback(!callback)
-            } catch (err) {
-                setDeleting(false)
-                console.log(err)
+                
+                imagesUrl.push(res.data)
             }
+            setImage(imagesUrl)
+            setLoading(false)
+
+        } catch (err) {
+            setLoading(false)
+            console.log(err)
         }
     }
+
+    useEffect(() => {
+        files.length > 0 && handleFile()
+    }, [files])
 
     const removeimage = async (id) => {
         var newimages = []
         try {
-        //   setremoving(true)
-          
-        await axios.post('/api/destroy', { public_id: id }, {
-            headers: {
-                'Authorization': token
-            }
-        })
-          image.forEach(i => {
-            if(i.public_id !== id) {
-              newimages.push(i)
-            }
-          })
+            await axios.post('/api/destroy', { public_id: id }, {
+                headers: {
+                    'Authorization': token
+                }
+            })
+
+            image.forEach(i => {
+                if(i.public_id !== id) {
+                    newimages.push(i)
+                }
+            })
     
-          setImage([...newimages])
-        //   setremoving(false)
-          alert('Image removed successfuly!')
+            setImage([...newimages])
+            alert('Image removed successfuly!')
         } catch (err) {
-        //   setremoving(false)
-          console.log(err)
+            console.log(err)
         }
     }
 
     useEffect(() => {
         if (quill) {
-          quill.on('text-change', () => {
-            console.log(quillRef.current.firstChild.innerHTML)
-            setDescription(quillRef.current.firstChild.innerHTML)
-          })
+            quill.on('text-change', () => {
+                setDescription(quillRef.current.firstChild.innerHTML)
+            })
         }
     }, [quill])
-
-    // console.log(description)
-    
 
     return (
       <div className="add__product__page">  
@@ -295,19 +223,12 @@ function AppProduct() {
                 <Loading />
                 :
                 <>
-                    {/* <div className="upload__image__container">
-                        <div id='add__photo'>
-                            <img className='add__photo__img' src={image.secure_url} alt="add photo svg" />
-                            <span className="removeImage" onClick={removePhoto}>&#10006;</span>
-                        </div>
-                    </div> */}
                     {
-                        
                         image.length > 0 && image.map((i, index) => {
                             return (
                             <div className='small_img'>
                                 <img src={i.secure_url} key={index} alt="" width={70} />
-                                <p onClick={() => removeimage(i.public_id)} >x</p>
+                                <p onClick={() => removeimage(i.public_id)}>x</p>
                             </div>
                             )
                         })
@@ -345,11 +266,6 @@ function AppProduct() {
                         <input type='number' className='input' placeholder=' ' name='price' id='price' onChange={e => setPrice(parseFloat(e.target.value))} value={price} />
                         <label htmlFor='price' className='label'>Price</label>  
                     </div>
-
-                    {/* <div className='input__container textarea'>
-                        <textarea className='input textarea' placeholder=' ' name='description' onChange={e => setDescription(e.target.value)} value={description} />
-                        <label htmlFor='description' className='label'>Description</label>  
-                    </div> */}
                     
                     <div style={{ width: '100%', height: 200, marginBottom: window.innerWidth > 500 ? 80 : 130 }}>
                         <div ref={quillRef} />

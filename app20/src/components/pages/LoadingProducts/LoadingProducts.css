@@ -20,7 +20,6 @@
     top: -10px;
     left: -40px;
 
-
     width: 20px;
     height: 200%;
 
@@ -62,7 +61,6 @@
 
 /*----------------- Responsive ------------------*/
 @media only screen and (max-width: 900px) {
-
     .loading__img__container {
         width: 30vw;
         height: 30vw;    
@@ -70,7 +68,6 @@
 }
 
 @media only screen and (max-width: 780px) {
-
     .loading__img__container {
         width: 40vw;
         height: 40vw;    
@@ -78,7 +75,6 @@
 }
 
 @media only screen and (max-width: 550px) {
-
     .loading__img__container {
         width: 80vw;
         height: 60vw;    

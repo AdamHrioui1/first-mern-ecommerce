@@ -14,7 +14,6 @@ function OrderDetails() {
       history.forEach(o => {
         return o._id === params.id && setOrder([o]) 
       });
-      // setOrder([currentOrder])
     }
   }
 
@@ -76,7 +75,6 @@ function OrderDetails() {
         }
 
       </div>
-
     </div>
   ) 
 }

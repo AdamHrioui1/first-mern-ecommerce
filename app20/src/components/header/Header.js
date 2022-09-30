@@ -55,7 +55,7 @@ function Header() {
   }, [])
 
   useEffect(() => {
-    console.log(location)
+    // console.log(location)
   }, [location])
   
   return (

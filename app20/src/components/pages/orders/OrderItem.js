@@ -1,11 +1,7 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import GlobaleContext from '../../../GlobaleCotext'
-import Cross from '../../icons/Cross.svg'
-
 
 function OrderItem({ payment }) {
-
     const formatDate = (date) => {
         const d = new Date(date)
         const day = d.getDate()

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { motion } from 'framer-motion'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Loading from '../Loading/Loading'
 
@@ -13,9 +13,10 @@ function Login() {
     e.preventDefault()
     try {
       setIsLoading(true)
-      const res = await axios.post('/user/login', {
+      await axios.post('/user/login', {
         email: email, password: password
       })
+
       setIsLoading(false)
       localStorage.setItem('firstlogin', true)
       window.location.href = '/products'
@@ -55,9 +56,8 @@ function Login() {
 
             </motion.form>
           }
-          <h5>I don't have an account - <Link to='/register'>Sign up</Link>
-          </h5>
-        
+
+          <h5>I don't have an account - <Link to='/register'>Sign up</Link></h5>
         </div>
       </div>
     </div>

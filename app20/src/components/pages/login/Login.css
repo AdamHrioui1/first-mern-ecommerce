@@ -1,12 +1,10 @@
 /*------------ form ---------------*/
 .login__page {
     width: 100%;
-    /* height: calc(100vh - 60px); */
 }
 
 .login__container {
     width: 100%;
-    /* height: calc(100vh - 120px); */
 
     display: flex;
     align-items: center;
@@ -51,8 +49,6 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-
-    /* border: 1px solid #000; */
 }
 
 .input__container {

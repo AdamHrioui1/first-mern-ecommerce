@@ -19,6 +19,7 @@ import PrivacyPolicy from './pages/privacyPolicy/PrivacyPolicy';
 import TermsConditions from './pages/termsCondition/TermsConditions';
 import Cookies from './pages/cookies/Cookies';
 import Refund from './pages/refund/Refund';
+import Error404 from './pages/error404/Error404';
 
 function Routers() {
   const state = useContext(GlobaleCotext)
@@ -51,6 +52,8 @@ function Routers() {
           <Route  path='/terms_and_conditions' exact element={<TermsConditions />} />
           <Route  path='/cookies' exact element={<Cookies />} />
           <Route  path='/refund' exact element={<Refund />} />
+
+          <Route  path='*' exact element={<Error404 />} />
         </Routes>
       </div>
     </Router>

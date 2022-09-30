@@ -12,11 +12,9 @@ function AppProduct() {
     const state = useContext(GlobaleContext)
     const [token] = state.token
     const [callback, setCallback] = state.callback
-    const [products, setProducts] = state.products
+    const [products] = state.products
 
     const { quill, quillRef } = useQuill();
-
-    const DescWrapper = useRef()
 
     const [files, setFiles] = useState([])
     const [image, setImage] = useState([])
@@ -46,7 +44,6 @@ function AppProduct() {
                 return p._id === params.id
             })
             setEditedProduct([ep])
-            console.log(ep)
         }
     }, [products, params])
 
@@ -74,10 +71,9 @@ function AppProduct() {
 
     useEffect(() => {
         if (quill) {
-          quill.on('text-change', () => {
-            console.log(quillRef.current.firstChild.innerHTML)
-            setDescription(quillRef.current.firstChild.innerHTML)
-          })
+            quill.on('text-change', () => {
+                setDescription(quillRef.current.firstChild.innerHTML)
+            })
         }
     }, [quill])
 
@@ -155,7 +151,6 @@ function AppProduct() {
             setQuantity6('')
             
             setCallback(!callback)
-
             alert('Upload Successfuly!')
             window.location.href = '/products'
         } catch (err) {
@@ -164,42 +159,6 @@ function AppProduct() {
             alert(err.response.data.msg)
         }
     }
-
-    // const handleFile = (e) => {
-    //     console.log(e.target.files)
-    //     const file = e.target.files[0]
-    //     try {
-    //         setLoading(true)
-    //         const uploadImage = async () => {
-    //             if(file.length === 0)
-    //                 return alert('No file uploaded!')
-                
-    //             if(file.type !== 'image/png' && file.type !== 'image/jpeg' && file.type !== 'image/webp')
-    //                 return alert('File type no supported!')
-                
-    //             if(file.size > 2*1024*1024)
-    //                 return alert('File size is too big!')
-                
-    //             const formData = new FormData()
-    //             formData.append('file', file)
-
-    //             const res = await axios.post('/api/upload', formData, {
-    //                 headers: { 
-    //                     'Authorization': token,
-    //                     'content-type': 'multipart/form-data'
-    //                 }
-    //             })
-
-    //             setLoading(false)
-    //             setImage(res.data)
-    //         }
-    //         uploadImage()
-    //     } catch (err) {
-    //         setLoading(false)
-    //         console.log(err)
-    //     }
-    // }
-
     
     const handleFile = async () => {
         try {
@@ -226,16 +185,13 @@ function AppProduct() {
 
             files.forEach(f => {
                 if(f.type === 'image/png' || f.type === 'image/jpeg' || f.type === 'image/webp' || f.type === 'image/svg+xml') {
-                matchedFiles.push(f)
+                    matchedFiles.push(f)
                 }
             })
-            
-            console.log(files)
 
             for(let f of matchedFiles) {
                 var formData = new FormData()
                 formData.append('files', f)
-                console.log('uploading...')
                 
                 const res = await axios.post('/api/upload', formData, {
                 headers: { 
@@ -243,7 +199,6 @@ function AppProduct() {
                     'content-type': 'multipart/form-data'
                 }
                 })
-                console.log(res)
                 imagesUrl.push(res.data)
             }
             setImage(imagesUrl)
@@ -259,88 +214,10 @@ function AppProduct() {
         files.length > 0 && handleFile()
     }, [files])
 
-    const removePhoto = async () => {
-        if(window.confirm('Are you sure you want to delete this photo?')) {
-            try {
-                setDeleting(true)
-                const res = await axios.post(`/api/destory`, { public_id: image.public_id }, {
-                    headers: {
-                        'Authorization': token
-                    }
-                })
-
-                console.log(res)
-                
-                products.forEach(p => {
-                    if(p._id === params.id) {
-                        p.images = []
-                    }
-                })
-                
-                await axios.put(`/api/product/${editedProduct[0]._id}`, {
-                    name: name,
-                    brand: brand,
-                    prevPrice: prevPrice,
-                    price: price,
-                    description: description,
-                    sizeAndQuantity: [
-                        {
-                            size: 7,
-                            quantity: quantity0
-                        },
-                        {
-                            size: 7.5,
-                            quantity: quantity1
-                        },
-                        {
-                            size: 8,
-                            quantity: quantity2
-                        },
-                        {
-                            size: 8.5,
-                            quantity: quantity3
-                        },
-                        {
-                            size: 9,
-                            quantity: quantity4
-                        },
-                        {
-                            size: 9.5,
-                            quantity: quantity5
-                        },
-                        {
-                            size: 10,
-                            quantity: quantity6
-                        }
-                    ], 
-                    images: [
-                        {
-                            public_id: '',
-                            secure_url: ''
-                        }
-                    ]
-                }, {
-                    headers: {
-                        'Authorization': token
-                    }
-                })
-
-                setCallback(!callback)
-                setDeleting(false)
-                setImage({ public_id: '', secure_url: ''})
-                setEditedProduct([...editedProduct, editedProduct[0].images = []])
-            } catch (err) {
-                setDeleting(false)
-                console.log(err.message)
-            }
-        }
-    }
-
     const removeimage = async (id) => {
         var newimages = []
         try {
-        //   setremoving(true)
-            const res = await axios.post('/api/destroy', { public_id: id }, {
+            await axios.post('/api/destroy', { public_id: id }, {
                 headers: {
                     'Authorization': token
                 }
@@ -353,11 +230,9 @@ function AppProduct() {
             })
     
             setImage([...newimages])
-        //   setremoving(false)
-          alert('Image removed successfuly!')
+            alert('Image removed successfuly!')
         } catch (err) {
-        //   setremoving(false)
-          console.log(err)
+            console.log(err)
         }
     }
     
@@ -391,14 +266,7 @@ function AppProduct() {
                 deleting ?
                     <Loading />
                 :
-                <>
-                    {/* <div className="upload__image__container">
-                        <div id='add__photo'>
-                            <img className='add__photo__img' src={image.secure_url.length > 0 && image.secure_url} alt="add photo svg" />
-                            <span className="removeImage" onClick={removePhoto}>&#10006;</span>
-                        </div>
-                    </div> */}
-                    
+                <>                    
                     {
                         
                         image.length > 0 && image.map((i, index) => {
@@ -443,11 +311,6 @@ function AppProduct() {
                         <input type='number' className='input' placeholder=' ' name='price' id='price' onChange={e => setPrice(parseInt(e.target.value))} value={price} />
                         <label htmlFor='price' className='label'>Price</label>  
                     </div>
-
-                    {/* <div className='input__container textarea'>
-                        <textarea className='input textarea' placeholder=' ' name='description' onChange={e => setDescription(e.target.value)} value={description} />
-                        <label htmlFor='description' className='label'>Description</label>  
-                    </div> */}
                     
                     <div style={{ width: '100%', height: 200, marginBottom: window.innerWidth > 500 ? 80 : 130 }}>
                         <div ref={quillRef} />

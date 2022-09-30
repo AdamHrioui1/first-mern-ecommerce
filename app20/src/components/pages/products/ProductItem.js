@@ -1,10 +1,10 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Edit from '../../icons/Edit.svg'
 import Delete from '../../icons/Delete.svg'
 import GlobaleCotext from '../../../GlobaleCotext'
 import axios from 'axios'
-import { AnimatePresence, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 
 function ProductItem({ product }) {
@@ -19,15 +19,13 @@ function ProductItem({ product }) {
 
     const deleteImages = async (id) => {
         try {
-            const res = await axios.post('/api/destroy', { public_id: id }, {
+            await axios.post('/api/destroy', { public_id: id }, {
                 headers: {
                     'Authorization': token
                 }
             })
-
-            console.log(res)
         } catch (err) {
-            console.log(err.message)
+            console.log(err)
         }
     }
 
@@ -53,15 +51,9 @@ function ProductItem({ product }) {
     }
     
 
-    const startTouching = () => {
-        console.log('start touching')
-        setStartTouchingProduct(true)
-    }
+    const startTouching = () => setStartTouchingProduct(true)
 
-    const endTouching = () => {
-        console.log('end touching')
-        setStartTouchingProduct(false)
-    }
+    const endTouching = () => setStartTouchingProduct(false)
 
     return (
         <div key={_id} className='product__item'>
@@ -81,19 +73,18 @@ function ProductItem({ product }) {
                 </div>
             }
 
-        <Link to={`/products/${_id}`}>
-            <div className="img__container" onTouchStart={startTouching} onTouchEnd={endTouching}>    
-                <div className={`third__circle ${ startTouchingProduct ? 'active' : ''}`} style={{ backgroundColor: `${product.color && product.color}` }}></div>
-                <div className={`second__circle ${ startTouchingProduct ? 'active' : ''}`} style={{ backgroundColor: `${product.color && product.color}` }}></div>
-                <motion.div layoutId={`/main__circle/${_id}`} transition={{ duration: 1 }} className="main__circle" style={{ backgroundColor: `${product.color && product.color}` }}></motion.div>
-                <motion.img layoutId={_id} transition={{ duration: 1 }} src={images[0].secure_url} alt="" />
-            </div>
-            <div className="product__item__name__price">
-                <h2>{name.length > 22 ? name.slice(0, 22) + '...' : name }</h2>
-                <p className='price'>${price.toFixed(2)}</p>
-            </div>
-        </Link>
-
+            <Link to={`/products/${_id}`}>
+                <div className="img__container" onTouchStart={startTouching} onTouchEnd={endTouching}>    
+                    <div className={`third__circle ${ startTouchingProduct ? 'active' : ''}`} style={{ backgroundColor: `${product.color && product.color}` }}></div>
+                    <div className={`second__circle ${ startTouchingProduct ? 'active' : ''}`} style={{ backgroundColor: `${product.color && product.color}` }}></div>
+                    <motion.div layoutId={`/main__circle/${_id}`} transition={{ duration: 1 }} className="main__circle" style={{ backgroundColor: `${product.color && product.color}` }}></motion.div>
+                    <motion.img layoutId={_id} transition={{ duration: 1 }} src={images[0].secure_url} alt="" />
+                </div>
+                <div className="product__item__name__price">
+                    <h2>{name.length > 22 ? name.slice(0, 22) + '...' : name }</h2>
+                    <p className='price'>${price.toFixed(2)}</p>
+                </div>
+            </Link>
         </div>
     )
 }

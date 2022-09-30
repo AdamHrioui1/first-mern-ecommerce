@@ -60,12 +60,10 @@ function Register() {
               </div>
               
               <button type='submit' className='form__button'>Login</button>
-
             </motion.form>
           }
 
-          <h5>Already have an account - <Link to='/login'>Sign in</Link>
-          </h5>
+          <h5>Already have an account - <Link to='/login'>Sign in</Link></h5>
 
         </div>
       </div>

@@ -4,14 +4,11 @@ import LoadingProducts from '../LoadingProducts/LoadingProducts'
 import ProductItem from './ProductItem'
 
 function GetAllProducts() {
-    
   const state = useContext(GlobaleCotext)
   const [products] = state.products
-  const [search] = state.search
   
   const [allProducts, setAllProducts] = useState([])
   const [loading, setLoading] = useState(true)
-  const [category, setCategory] = state.category
 
     useEffect(() => {
         setLoading(true)

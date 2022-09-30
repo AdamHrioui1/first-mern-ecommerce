@@ -44,11 +44,8 @@ class APIfeatures {
 const ProductCtrl = {
     getProduct: async (req, res) => {
         try {
-            console.log(req.query)
-            console.log(req.query)
             const features = new APIfeatures(Product.find(), req.query).filtring().sorting().paginating()
             const products = await features.query
-
             return res.status(200).json({ products })
         } catch (err) {
             return res.status(500).json({ msg: err.message })

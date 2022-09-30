@@ -27,10 +27,10 @@ function Footer() {
   	 		<div class="footer-col">
   	 			<h4>follow us</h4>
   	 			<ul>
-  	 				<li><p>Facebook</p></li>
-  	 				<li><p>Intagram</p></li>
-  	 				<li><p>Pinterest</p></li>
-  	 				<li><p>Linkdin</p></li>
+  	 				<li><p><a href='https://www.facebook.com'>Facebook</a></p></li>
+  	 				<li><p><a href='https://www.instagram.com'>Instagram</a></p></li>
+  	 				<li><p><a href='https://www.pinterest.com'>Pinterest</a></p></li>
+  	 				<li><p><a href='https://www.linkdin.com'>Linkdin</a></p></li>
   	 			</ul>
   	 		</div>
   	 	</div>
